@@ -56,6 +56,21 @@ resource "aws_instance" "web_server" {
   }
 }
 
+resource "aws_route53_health_check" "web_server" {
+  count = length(aws_instance.web_server.*)
+
+  fqdn              = aws_instance.web_server[count.index].public_dns
+  port              = 80
+  type              = "HTTP"
+  resource_path     = "/"
+  failure_threshold = "5"
+  request_interval  = "30"
+
+  tags = {
+    Name = "Simple Web ${count.index}"
+  }
+}
+
 resource "aws_instance" "compute_server" {
   ami = data.aws_ami.amzlinux2.id
   instance_type = var.compute_server_instance_type

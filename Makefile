@@ -7,13 +7,18 @@ SHELL:=bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
+TERRAFORM_DEPS := $(wildcard ./*.tf) $(wildcard ./*.tfvars)
+
 .PHONY: server deploy
 
 user-data.sh: $(wildcard website/*)
 	website/compile.py > user-data.sh
 
-apply: user-data.sh $(wildcard ./*.tf) $(wildcard ./*.tfvars)
+apply: user-data.sh $(TERRAFORM_DEPS)
 	terraform apply
+
+apply!: user-data.sh $(TERRAFORM_DEPS)
+	terraform apply --auto-approve
 
 server: 
 	python -m http.server --directory website
