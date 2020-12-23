@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Simple Site | Home</title>
+</head>
+
+<body>
+    <h1>Simple Site</h1>
+    <h2>Configuration</h2>
+    <div class="config">
+        <table>
+            <thead>
+                <th>Attribute</th>
+                <th>Value</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><pre>${name}</pre></td>
+                </tr>
+                <tr>
+                    <td>Started</td>
+                    <td><pre>$(date)</pre></td>
+                </tr>
+                <tr>
+                    <td>Region</td>
+                    <td><pre>${aws_region}</pre></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
