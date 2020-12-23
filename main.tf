@@ -32,6 +32,8 @@ data "aws_ami" "amzlinux2" {
 # -- Instances
 
 resource "aws_instance" "web_server" {
+  count = var.web_server_count
+
   ami = data.aws_ami.amzlinux2.id
   instance_type = var.web_server_instance_type
   subnet_id = var.dmz_subnet
@@ -41,7 +43,7 @@ resource "aws_instance" "web_server" {
   associate_public_ip_address = true
   user_data = templatefile("user-data.sh", { 
     aws_region = var.aws_region 
-    name = "Web Server"
+    name = "Web Server ${count.index}"
   })
 
 
@@ -50,7 +52,7 @@ resource "aws_instance" "web_server" {
   ]
 
   tags = {
-    Name = "Web Server"
+    Name = "Web Server ${count.index}"
   }
 }
 

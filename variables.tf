@@ -2,6 +2,10 @@ variable "aws_region" {
   type = string
 }
 
+variable "aws_profile" {
+  type = string
+}
+
 variable "aws_key_name" {
   type = string
 }
@@ -24,4 +28,9 @@ variable "dmz_subnet" {
 
 variable "compute_subnet" {
   type = string
+}
+
+variable "web_server_count" {
+  description = "The number of web servers to deploy"
+  type = number
 }
