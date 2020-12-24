@@ -26,7 +26,6 @@ destroy:
 destroy!:
 	terraform destroy --auto-approve
 
-
 server: 
 	python -m http.server --directory website
 
